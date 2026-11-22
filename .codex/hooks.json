@@ -1,0 +1,30 @@
+{
+  "description": "Hooks do harness (mesmos scripts do Claude Code). Revise e confie com /hooks na primeira vez.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|shell|exec_command|apply_patch|Edit|Write)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/scripts/harness/guard.sh\"",
+            "timeout": 30,
+            "statusMessage": "Conferindo regras de segurança do repositório"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/scripts/harness/verificar.sh\"",
+            "timeout": 900,
+            "statusMessage": "Verificando as mudanças (check.sh)"
+          }
+        ]
+      }
+    ]
+  }
+}

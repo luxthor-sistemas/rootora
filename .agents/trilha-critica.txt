@@ -1,0 +1,33 @@
+# Caminhos (regex estendida, um por linha) que colocam a mudança na trilha crítica.
+# Ajuste ao projeto. Linhas com # são comentários.
+(^|/)(auth|autenticacao|login|sessao|session|senha|password)(/|[._-])
+(^|/)(permiss|autoriza|authz|acl|roles?|papeis)
+(^|/)(pagamento|payment|billing|cobranca|checkout|assinatura|subscription|webhook)
+(^|/)(migrations?|migracoes)/
+(^|/)(firestore|storage|database)\.rules$
+(^|/)firestore\.indexes\.json$
+(^|/)functions/
+(^|/)(infra|terraform|tofu)/
+^\.github/
+^\.agents/
+^\.claude/
+^\.codex/
+^scripts/harness/
+^AGENTS\.md$
+^CLAUDE\.md$
+
+# Rootora: identidade, coleta de dados, permissões nativas e distribuição.
+^src/services/(analytics|crashlytics|firestore|notifications)\.
+^src/hooks/use(Auth|AccountDeletion|NomeUsuario|Perfil|Onboarding|AccessibilityPermission|AtivacaoBloqueio|AcessoUso|ConsentimentoAcessoUso|ColetaUsoApps|LocalNotifications)
+^src/domain/(authErrors|usoApps)\.
+^src/components/perfil/(ConfirmDeleteAccountModal|ReauthPromptModal)\.
+^src/screens/(ativacao|permissions)/
+^src/screens/perfil/(DivulgacaoAcessibilidade|DivulgacaoAcessoUso|PerfilScreen)
+^src/navigation/(AtivacaoStack|RootNavigator)\.
+^src/native/
+^src/utils/storage\.
+^android/app/src/main/(AndroidManifest\.xml$|java/com/luxthorapps/rootora/|res/xml/)
+^android/(app/build\.gradle$|build\.gradle$|settings\.gradle$|gradle\.properties$|gradlew(\.bat)?$|gradle/wrapper/)
+^ios/(Podfile$|[^/]+\.xcodeproj/|[^/]+/(AppDelegate\.swift|Info\.plist|PrivacyInfo\.xcprivacy)$)
+^(\.firebaserc|firebase\.json)$
+^docs/legal/

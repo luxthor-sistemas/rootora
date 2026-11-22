@@ -93,3 +93,9 @@ firebase-debug.log
 
 # Relatórios de teste (JUnit XML)
 reports/
+
+# harness
+.harness/
+.harness-backup/
+.env.*
+!.env.example

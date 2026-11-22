@@ -1,0 +1,4 @@
+# Configuração da instalação do harness. Mude o alvo reinstalando (instalar.py), não à mão.
+alvo = "codex"
+versao_nucleo = "sem-git"
+instalado_em = "2026-11-21 21:39"

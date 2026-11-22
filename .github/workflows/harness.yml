@@ -1,0 +1,61 @@
+name: CI
+
+# Ponto de partida genérico: segredos, testes do harness, coerência das specs e check.sh completo.
+# Ajuste o job "verificar" à stack (emuladores do Firebase, Java, monorepo) ou crie scripts/check.local.sh.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  segredos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Varredura de segredos (gitleaks, histórico completo)
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo" \
+            -e GIT_CONFIG_COUNT=1 -e GIT_CONFIG_KEY_0=safe.directory -e GIT_CONFIG_VALUE_0=/repo \
+            zricethezav/gitleaks:v8.24.2 git /repo --redact --verbose
+
+  harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Testes do harness (hooks, gerador de agentes, skills, shellcheck)
+        run: bash scripts/harness/testes/rodar.sh
+      - name: Coerência das specs
+        run: |
+          if find docs/specs -mindepth 1 -maxdepth 1 -type d ! -name '_*' | grep -q .; then
+            python3 scripts/harness/verificar_spec.py
+          fi
+
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Dependências
+        env:
+          COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+        run: |
+          corepack enable
+          find . -maxdepth 3 -name package.json -not -path '*/node_modules/*' -printf '%h\n' | while read -r d; do
+            if   [ -f "$d/pnpm-lock.yaml" ]; then (cd "$d" && pnpm install --frozen-lockfile)
+            elif [ -f "$d/yarn.lock" ]; then (cd "$d" && yarn install --frozen-lockfile)
+            elif [ -f "$d/package-lock.json" ]; then (cd "$d" && npm ci)
+            fi
+          done
+      - name: check.sh completo
+        run: bash scripts/harness/check.sh completo

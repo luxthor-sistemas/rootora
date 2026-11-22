@@ -1,0 +1,21 @@
+version: 2
+# Atualizações semanais agrupadas. Acrescente o ecossistema do projeto (npm, gradle...) com o diretório certo.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: America/Sao_Paulo
+    commit-message:
+      prefix: build
+    groups:
+      actions:
+        patterns: ["*"]
+  # - package-ecosystem: npm
+  #   directory: /
+  #   schedule: { interval: weekly, day: monday, time: "06:00", timezone: America/Sao_Paulo }
+  #   commit-message: { prefix: build }
+  #   groups:
+  #     menores: { update-types: [minor, patch] }

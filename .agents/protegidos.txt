@@ -1,0 +1,9 @@
+# Arquivos que agentes não editam (o hook guard.sh bloqueia). Globs no estilo do bash,
+# relativos à raiz do repositório. Linhas com # são comentários.
+# Exemplos (descomente e ajuste):
+# tests/referencia/**
+# **/__fixtures__/referencia/**
+# supabase/migrations/2026*        # migrations já aplicadas em produção
+
+# Saída gerada pelo Graphify.
+graphify-out/**

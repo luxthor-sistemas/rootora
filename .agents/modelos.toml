@@ -1,0 +1,21 @@
+# Modelo e esforço por nível de subagente, nas duas ferramentas.
+# Mudou de modelo? Edite aqui e rode: python3 scripts/harness/gerar_agentes.py
+# Um agente pode fugir do nível no próprio frontmatter (claude_model, claude_effort, codex_model, codex_effort).
+# Um projeto pode sobrescrever estes valores em .agents/modelos.local.toml (mesmo formato; não é tocado pelo --atualizar).
+#
+# Claude: model = haiku | sonnet | opus | fable | ID completo | inherit ; effort = low | medium | high
+#   Prefira o apelido: ele acompanha a versão mais nova da família.
+# Codex:  model = ID do modelo (ex.: gpt-6.2-sol) ; effort = minimal | low | medium | high | xhigh
+#   Sem model, o subagente herda o modelo da sessão (pode ser um modelo barato).
+
+[leve]      # busca e leitura
+claude = { model = "haiku",  effort = "low" }
+codex  = { model = "gpt-6.1-terra", effort = "low" }
+
+[medio]     # implementar, revisar a trilha padrão
+claude = { model = "sonnet", effort = "medium" }
+codex  = { model = "gpt-6.1-terra", effort = "medium" }
+
+[forte]     # planejar, revisar a trilha crítica
+claude = { model = "opus",   effort = "high" }
+codex  = { model = "gpt-6.2-sol", effort = "high" }
