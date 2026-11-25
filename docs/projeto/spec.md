@@ -1,5 +1,7 @@
 # Spec do Projeto — Rootora
 
+> **Evolução 2.0 (proposta, 24/11/2026):** a visão de destino e o escopo estão em [PRD 2.0](../product-overview.md), com [roadmap](../roadmap.md), [design](../design-system.md), [ciência](ciencia-rootora-2.md) e [diretrizes de evolução](evolucao-2.md). Este documento continua a descrever as decisões vigentes até as features aprovadas serem implementadas; não aplicar mudanças antecipadamente.
+
 > Visão do produto, princípios, decisões, restrições e loja. As **regras de negócio** vivem em
 > `regras-de-negocio.md` (fonte única).
 

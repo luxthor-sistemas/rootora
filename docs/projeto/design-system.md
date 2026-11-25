@@ -1,5 +1,7 @@
 # Design System — Rootora
 
+> **Estado vigente (1.x):** tokens e componentes implementados. O [Design System 2.0](../design-system.md) é a direção proposta; atualizar esta referência conforme a migração efetiva, preservando contratos das telas não migradas.
+
 > Tokens, tipografia e componentes reais (auditados no código). Tema único no MVP ("Raiz"); seleção de tema (Amanhecer/Raiz/Maré) é planejamento
 > futuro, fora de escopo hoje.
 

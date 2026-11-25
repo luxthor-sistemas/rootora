@@ -1,5 +1,7 @@
 # Protótipo e Telas — Rootora
 
+> **2.0:** consultar a arquitetura de navegação e composição de telas no [Design System 2.0](../design-system.md). Os protótipos abaixo são referências legadas; os novos protótipos serão criados por feature em docs/specs/NNN-nome/prototipo.html, com estados e critérios da spec aprovada.
+
 > Protótipos HTML atuais (`docs/design/prototipo/`) e lista de telas reais do app.
 
 ## Protótipos atuais (`docs/design/prototipo/`)

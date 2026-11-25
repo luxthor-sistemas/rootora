@@ -1,5 +1,7 @@
 # Arquitetura — Rootora
 
+> **Rootora 2.0:** a entrada técnica do harness é [docs/architecture.md](../architecture.md), incluindo diretrizes propostas para as próximas features. Este inventário descreve a arquitetura vigente; atualizar conforme implementação.
+
 > Stack, camadas, comandos, serviços, dependências e dívida técnica. ADRs completas em `docs/adr/`.
 
 ## Tipo de solução
